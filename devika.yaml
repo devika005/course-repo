@@ -21,7 +21,7 @@ spec:
         imagePullPolicy: Always
         name: app-2048-devika
         ports:
-        - containerPort: 3001
+        - containerPort: 3000
 ---
 apiVersion: v1
 kind: Service
@@ -30,8 +30,8 @@ metadata:
   name: service-2048-devika
 spec:
   ports:
-    - port: 3001
-      targetPort: 3001
+    - port: 3000
+      targetPort: 3000
       protocol: TCP
   type: NodePort
   selector:
@@ -46,7 +46,7 @@ metadata:
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/target-type: ip
     alb.ingress.kubernetes.io/group.name: students-app
-    alb.ingress.kubernetes.io/healthcheck-path: /health
+    alb.ingress.kubernetes.io/healthcheck-path: /devika-student/health
 spec:
   ingressClassName: alb
   rules:
@@ -58,4 +58,4 @@ spec:
             service:
               name: service-2048-devika
               port:
-                number: 3001
+                number: 3000
